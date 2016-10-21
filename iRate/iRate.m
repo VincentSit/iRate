@@ -65,13 +65,13 @@ NSString *const iRateCancelButtonKey = @"iRateCancelButton";
 NSString *const iRateRemindButtonKey = @"iRateRemindButton";
 NSString *const iRateRateButtonKey = @"iRateRateButton";
 
-NSString *const iRateCouldNotConnectToAppStore = @"iRateCouldNotConnectToAppStore";
-NSString *const iRateDidDetectAppUpdate = @"iRateDidDetectAppUpdate";
-NSString *const iRateDidPromptForRating = @"iRateDidPromptForRating";
-NSString *const iRateUserDidAttemptToRateApp = @"iRateUserDidAttemptToRateApp";
-NSString *const iRateUserDidDeclineToRateApp = @"iRateUserDidDeclineToRateApp";
-NSString *const iRateUserDidRequestReminderToRateApp = @"iRateUserDidRequestReminderToRateApp";
-NSString *const iRateDidOpenAppStore = @"iRateDidOpenAppStore";
+NSString *const iRateCouldNotConnectToAppStoreNotification = @"iRateCouldNotConnectToAppStoreNotification";
+NSString *const iRateDidDetectAppUpdateNotification = @"iRateDidDetectAppUpdateNotification";
+NSString *const iRateDidPromptForRatingNotification = @"iRateDidPromptForRatingNotification";
+NSString *const iRateUserDidAttemptToRateAppNotification = @"iRateUserDidAttemptToRateAppNotification";
+NSString *const iRateUserDidDeclineToRateAppNotification = @"iRateUserDidDeclineToRateAppNotification";
+NSString *const iRateUserDidRequestReminderToRateAppNotification = @"iRateUserDidRequestReminderToRateAppNotification";
+NSString *const iRateDidOpenAppStoreNotification = @"iRateDidOpenAppStoreNotification";
 
 static NSString *const iRateAppStoreIDKey = @"iRateAppStoreID";
 static NSString *const iRateRatedVersionKey = @"iRateRatedVersionChecked";
@@ -657,7 +657,7 @@ static NSString *const iRateMacAppStoreURLFormat = @"macappstore://itunes.apple.
         {
             [self.delegate iRateCouldNotConnectToAppStore:error];
         }
-        [[NSNotificationCenter defaultCenter] postNotificationName:iRateCouldNotConnectToAppStore
+        [[NSNotificationCenter defaultCenter] postNotificationName:iRateCouldNotConnectToAppStoreNotification
                                                             object:error];
     }
 }
@@ -888,7 +888,11 @@ static NSString *const iRateMacAppStoreURLFormat = @"macappstore://itunes.apple.
             }
 
             self.visibleAlert = alert;
-
+            
+            if ([alert respondsToSelector:@selector(preferredAction)]) {
+                alert.preferredAction = alert.actions.firstObject;
+            }
+            
             //get current view controller and present alert
             [topController presentViewController:alert animated:YES completion:NULL];
         }
@@ -969,7 +973,7 @@ static NSString *const iRateMacAppStoreURLFormat = @"macappstore://itunes.apple.
         {
             [self.delegate iRateDidPromptForRating];
         }
-        [[NSNotificationCenter defaultCenter] postNotificationName:iRateDidPromptForRating
+        [[NSNotificationCenter defaultCenter] postNotificationName:iRateDidPromptForRatingNotification
                                                             object:nil];
     }
 }
@@ -1003,7 +1007,7 @@ static NSString *const iRateMacAppStoreURLFormat = @"macappstore://itunes.apple.
         {
             [self.delegate iRateDidDetectAppUpdate];
         }
-        [[NSNotificationCenter defaultCenter] postNotificationName:iRateDidDetectAppUpdate
+        [[NSNotificationCenter defaultCenter] postNotificationName:iRateDidDetectAppUpdateNotification
                                                             object:nil];
     }
 
@@ -1095,7 +1099,7 @@ static NSString *const iRateMacAppStoreURLFormat = @"macappstore://itunes.apple.
         {
             [self.delegate iRateCouldNotConnectToAppStore:error];
         }
-        [[NSNotificationCenter defaultCenter] postNotificationName:iRateCouldNotConnectToAppStore
+        [[NSNotificationCenter defaultCenter] postNotificationName:iRateCouldNotConnectToAppStoreNotification
                                                             object:error];
     }
     else
@@ -1110,7 +1114,7 @@ static NSString *const iRateMacAppStoreURLFormat = @"macappstore://itunes.apple.
         {
             [self.delegate iRateDidOpenAppStore];
         }
-        [[NSNotificationCenter defaultCenter] postNotificationName:iRateDidOpenAppStore
+        [[NSNotificationCenter defaultCenter] postNotificationName:iRateDidOpenAppStoreNotification
                                                         object:nil];
     }
 }
@@ -1195,7 +1199,7 @@ static NSString *const iRateMacAppStoreURLFormat = @"macappstore://itunes.apple.
     {
         [self.delegate iRateUserDidDeclineToRateApp];
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:iRateUserDidDeclineToRateApp
+    [[NSNotificationCenter defaultCenter] postNotificationName:iRateUserDidDeclineToRateAppNotification
                                                         object:nil];
 }
 
@@ -1209,7 +1213,7 @@ static NSString *const iRateMacAppStoreURLFormat = @"macappstore://itunes.apple.
     {
         [self.delegate iRateUserDidRequestReminderToRateApp];
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:iRateUserDidRequestReminderToRateApp
+    [[NSNotificationCenter defaultCenter] postNotificationName:iRateUserDidRequestReminderToRateAppNotification
                                                         object:nil];
 }
 
@@ -1223,7 +1227,7 @@ static NSString *const iRateMacAppStoreURLFormat = @"macappstore://itunes.apple.
     {
         [self.delegate iRateUserDidAttemptToRateApp];
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:iRateUserDidAttemptToRateApp
+    [[NSNotificationCenter defaultCenter] postNotificationName:iRateUserDidAttemptToRateAppNotification
                                                         object:nil];
 
     // if the delegate has not implemented the method, or if it returns YES
