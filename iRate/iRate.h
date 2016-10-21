@@ -63,23 +63,23 @@ FOUNDATION_EXPORT const unsigned char iRateVersionString[];
 IRATE_EXTERN NSUInteger const iRateAppStoreGameGenreID;
 IRATE_EXTERN NSString *const iRateErrorDomain;
 
-//localisation string keys
-IRATE_EXTERN NSString *const iRateMessageTitleKey; //iRateMessageTitle
-IRATE_EXTERN NSString *const iRateAppMessageKey; //iRateAppMessage
-IRATE_EXTERN NSString *const iRateGameMessageKey; //iRateGameMessage
-IRATE_EXTERN NSString *const iRateUpdateMessageKey; //iRateUpdateMessage
-IRATE_EXTERN NSString *const iRateCancelButtonKey; //iRateCancelButton
-IRATE_EXTERN NSString *const iRateRemindButtonKey; //iRateRemindButton
-IRATE_EXTERN NSString *const iRateRateButtonKey; //iRateRateButton
+// Localisation string keys.
+IRATE_EXTERN NSString *const iRateMessageTitleKey;  // iRateMessageTitle
+IRATE_EXTERN NSString *const iRateAppMessageKey;    // iRateAppMessage
+IRATE_EXTERN NSString *const iRateGameMessageKey;   // iRateGameMessage
+IRATE_EXTERN NSString *const iRateUpdateMessageKey; // iRateUpdateMessage
+IRATE_EXTERN NSString *const iRateCancelButtonKey;  // iRateCancelButton
+IRATE_EXTERN NSString *const iRateRemindButtonKey;  // iRateRemindButton
+IRATE_EXTERN NSString *const iRateRateButtonKey;    // iRateRateButton
 
-//notification keys
-IRATE_EXTERN NSString *const iRateCouldNotConnectToAppStore;
-IRATE_EXTERN NSString *const iRateDidDetectAppUpdate;
-IRATE_EXTERN NSString *const iRateDidPromptForRating;
-IRATE_EXTERN NSString *const iRateUserDidAttemptToRateApp;
-IRATE_EXTERN NSString *const iRateUserDidDeclineToRateApp;
-IRATE_EXTERN NSString *const iRateUserDidRequestReminderToRateApp;
-IRATE_EXTERN NSString *const iRateDidOpenAppStore;
+// Notification names.
+IRATE_EXTERN NSString *const iRateCouldNotConnectToAppStoreNotification;
+IRATE_EXTERN NSString *const iRateDidDetectAppUpdateNotification;
+IRATE_EXTERN NSString *const iRateDidPromptForRatingNotification;
+IRATE_EXTERN NSString *const iRateUserDidAttemptToRateAppNotification;
+IRATE_EXTERN NSString *const iRateUserDidDeclineToRateAppNotification;
+IRATE_EXTERN NSString *const iRateUserDidRequestReminderToRateAppNotification;
+IRATE_EXTERN NSString *const iRateDidOpenAppStoreNotification;
 
 
 typedef NS_ENUM(NSUInteger, iRateErrorCode)
